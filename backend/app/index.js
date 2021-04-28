@@ -1,9 +1,10 @@
+import express from 'express';
+import cors from 'cors';
+import morgan from 'morgan';
+import helmet from 'helmet';
+import router from './routes';
+
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const router = require('./routes');
 
 const app = express();
 
