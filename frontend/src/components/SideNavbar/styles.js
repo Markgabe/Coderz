@@ -10,7 +10,6 @@ export const Container = styled.div`
 `;
 
 export const Logo = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
   width: 60px;
   height: 60px;
   background-color: #6699CC;
@@ -25,6 +24,8 @@ export const Logo = styled.div`
   font-size: 2.8em;
   font-family: 'Lato', sans-serif;
   box-shadow: inset 0 0 20px 0 rgba(0,0,0,0.4);
+  cursor: default;
+  user-select: none;
 `;
 
 export const Separator = styled.div`
@@ -38,6 +39,7 @@ export const IconGroup = styled.div`
   flex-direction: column;
   margin-top: 25px;
   margin-bottom: auto;
+  gap: 50px;
 `;
 
 export const ExpandButton = styled.div`

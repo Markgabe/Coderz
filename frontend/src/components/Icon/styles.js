@@ -8,7 +8,7 @@ export const ResultIcon = styled(({ svg, ...props }) => svg.render(props))`
   box-sizing: border-box;
   
   width: 85px;
-  height: 50px;
+  height: 40px;
   margin: 10px auto;
 
   transition: all 0.3s;

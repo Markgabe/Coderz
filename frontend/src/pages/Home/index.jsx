@@ -1,8 +1,9 @@
 import React from 'react';
 
-import { Container, MainArea } from './styles';
+import { Container, MainArea, CardArea } from './styles';
 import SideNavbar from '../../components/SideNavbar';
 import Topbar from '../../components/Topbar';
+import Card from '../../components/Card';
 
 function Home() {
   return (
@@ -10,6 +11,12 @@ function Home() {
       <SideNavbar />
       <MainArea>
         <Topbar />
+        <CardArea>
+          <Card>a</Card>
+          <Card>b</Card>
+          <Card>c</Card>
+          <Card>d</Card>
+        </CardArea>
       </MainArea>
     </Container>
   );

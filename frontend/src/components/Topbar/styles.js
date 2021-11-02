@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { Link } from 'react-router-dom';
 import { LogoutBoxR } from '@styled-icons/remix-line';
 
 export const Container = styled.div`
@@ -28,9 +28,8 @@ export const LevelContainer = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  h1, h4 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: lighter;
+  h1, h4 {   
+    font-weight: 300;
     padding: 0;
     margin: 0;
     color: #003b6d;
@@ -43,9 +42,23 @@ export const UserInfoContainer = styled.div`
   color: #676767;
 
   p {
-    font-family: 'Montserrat', sans-serif;
+    line-height: 4;
     font-weight: 600;
     color: #003b6d;
+  }
+`;
+
+export const LogoutButton = styled(Link)`
+  cursor: pointer;
+  color: #676767;
+  transition: all 0.3s;
+
+  &:visited {
+    color: #676767;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 `;
 

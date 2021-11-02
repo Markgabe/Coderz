@@ -7,6 +7,7 @@ import {
   LevelContainer,
   UserInfoContainer,
   LogoutIcon,
+  LogoutButton,
 } from './styles';
 
 export default function SideNavbar() {
@@ -20,7 +21,9 @@ export default function SideNavbar() {
         </LevelContainer>
         <UserInfoContainer>
           <p>MARKGOD</p>
-          <LogoutIcon />
+          <LogoutButton to='/logout' style={{ margin: 'auto' }}>
+            <LogoutIcon />
+          </LogoutButton>
         </UserInfoContainer>
       </BarContainer>
     </Container>
