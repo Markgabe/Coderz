@@ -9,11 +9,7 @@ const App = () => (
   <>
     <GlobalStyles />
     <BrowserRouter>
-      <Route
-        exact
-        path="/"
-        component={() => <Home />}
-      />
+      <Route exact path='/' component={() => <Home />} />
     </BrowserRouter>
   </>
 );
