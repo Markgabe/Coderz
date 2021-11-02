@@ -1,23 +1,28 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "extends": [
-        "plugin:react/recommended",
-        "airbnb"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-      "import/prefer-default-export": "off"
-    }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["plugin:react/recommended", "airbnb"],
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "import/extensions": 0,
+    "react/button-has-type": 0,
+    "react/jsx-filename-extension": 0,
+    "react/react-in-jsx-scope": 0,
+    "import/no-unresolved": 0,
+    "import/prefer-default-export": 0,
+    "no-use-before-define": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/destructuring-assignment": 0,
+    "no-shadow": 0,
+    "jsx-quotes": 0,
+    "no-unused-vars": 0,
+    "object-curly-newline": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/prop-types": "off"
+  },
+  "settings": {
+    "import/extensions": [".js", ".jsx", ".ts", ".tsx", ".mjs"]
+  }
 }
