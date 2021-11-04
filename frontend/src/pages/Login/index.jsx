@@ -25,22 +25,26 @@ export default function Login() {
 
     const id = toast.loading('Please wait...');
 
-    api
-      .post('login', {
-        email: username,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          toast.success('Login succeded!');
-          history.push('/');
-        } else {
-          toast.error('Falha no login!');
-        }
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-
+    if (process.env.REACT_APP_SKIP_LOGIN_REQUEST !== 'true') {
+      api
+        .post('login', {
+          email: username,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            toast.success('Login succeded!');
+            history.push('/');
+          } else {
+            toast.error('Falha no login!');
+          }
+        })
+        .catch((err) => {
+          toast.error(err.message);
+        });
+    } else {
+      toast.success('Login succeded!');
+      history.push('/');
+    }
     toast.dismiss(id, 4000);
   };
 
