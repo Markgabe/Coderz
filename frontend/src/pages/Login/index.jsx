@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+
+import api from '../../services/api';
 
 import {
   Container,
@@ -10,11 +13,26 @@ import {
 } from './styles';
 
 export default function Login() {
+  const history = useHistory();
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    api
+      .post('login', {
+        email: username,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          history.push('/');
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
