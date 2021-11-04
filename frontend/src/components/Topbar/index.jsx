@@ -21,7 +21,7 @@ export default function SideNavbar() {
         </LevelContainer>
         <UserInfoContainer>
           <p>MARKGOD</p>
-          <LogoutButton to='/logout' style={{ margin: 'auto' }}>
+          <LogoutButton to='/login' style={{ margin: 'auto' }}>
             <LogoutIcon />
           </LogoutButton>
         </UserInfoContainer>

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { toast } from 'react-toastify';
+
 import api from '../../services/api';
 
 import {
@@ -21,18 +23,25 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const id = toast.loading('Please wait...');
+
     api
       .post('login', {
         email: username,
       })
       .then((response) => {
         if (response.status === 200) {
+          toast.success('Login succeded!');
           history.push('/');
+        } else {
+          toast.error('Falha no login!');
         }
       })
       .catch((err) => {
-        console.error(err);
+        toast.error(err.message);
       });
+
+    toast.dismiss(id, 4000);
   };
 
   return (
