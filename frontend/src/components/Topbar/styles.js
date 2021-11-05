@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { LogoutBoxR } from '@styled-icons/remix-line';
 
 export const Container = styled.div`
@@ -48,14 +47,11 @@ export const UserInfoContainer = styled.div`
   }
 `;
 
-export const LogoutButton = styled(Link)`
+export const LogoutButton = styled.button`
+  border: none;
   cursor: pointer;
-  color: #676767;
+  background-color: transparent;
   transition: all 0.3s;
-
-  &:visited {
-    color: #676767;
-  }
 
   &:hover {
     transform: scale(1.1);
@@ -66,4 +62,5 @@ export const LogoutIcon = styled(LogoutBoxR)`
   width: 24px;
   height: 24px;
   margin: auto 10px;
+  color: #676767;
 `;

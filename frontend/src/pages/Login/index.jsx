@@ -23,6 +23,11 @@ export default function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (username === '' || password === '') {
+      toast.info('Informe usuário e senha!');
+      return;
+    }
+
     const id = toast.loading('Please wait...');
 
     if (process.env.REACT_APP_SKIP_LOGIN_REQUEST !== 'true') {
@@ -32,6 +37,10 @@ export default function Login() {
         })
         .then((response) => {
           if (response.status === 200) {
+            const { accessToken, refreshToken, user } = response.data;
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('username', user.name);
             toast.success('Login succeded!');
             history.push('/');
           } else {
