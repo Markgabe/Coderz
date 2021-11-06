@@ -34,6 +34,7 @@ export default function Login() {
       api
         .post('login', {
           email: username,
+          password,
         })
         .then((response) => {
           if (response.status === 200) {
