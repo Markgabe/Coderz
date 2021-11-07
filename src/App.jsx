@@ -9,6 +9,7 @@ import { GlobalStyles } from './styles/GlobalStyles';
 
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 
 const App = () => (
   <>
@@ -16,6 +17,7 @@ const App = () => (
     <BrowserRouter>
       <Route exact path='/' component={() => <Home />} />
       <Route path='/login' component={() => <Login />} />
+      <Route path='/register' component={() => <Register />} />
     </BrowserRouter>
     <ToastContainer />
   </>
