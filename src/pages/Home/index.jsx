@@ -1,25 +1,17 @@
-import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
 
 import { Container, MainArea, CardArea } from './styles';
 import SideNavbar from '../../components/SideNavbar';
 import Topbar from '../../components/Topbar';
 import Card from '../../components/Card';
 
-function Home() {
-  const history = useHistory();
+import useAuth from '../../hooks/useAuth';
 
-  useEffect(() => {
-    if (
-      localStorage.getItem('username') === '' ||
-      localStorage.getItem('username') === null
-    ) {
-      history.push('/login');
-    }
-  }, []);
+export default function Home() {
+  useAuth();
   return (
     <Container>
-      <SideNavbar />
+      <SideNavbar active='home' />
       <MainArea>
         <Topbar />
         <CardArea>
@@ -32,5 +24,3 @@ function Home() {
     </Container>
   );
 }
-
-export default Home;
