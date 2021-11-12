@@ -1,0 +1,46 @@
+{
+  "kind": "categoryToolbox",
+  "contents": [
+    {
+      "kind": "category",
+      "name": "All",
+      "colour": 210,
+      "contents": [
+        {
+          "kind": "block",
+          "type": "controls_if"
+        },
+        {
+          "kind": "block",
+          "type": "controls_repeat_ext"
+        },
+        {
+          "kind": "block",
+          "type": "logic_compare"
+        },
+        {
+          "kind": "block",
+          "type": "math_number"
+        },
+        {
+          "kind": "block",
+          "type": "math_arithmetic"
+        },
+        {
+          "kind": "block",
+          "type": "text"
+        },
+        {
+          "kind": "block",
+          "type": "text_print"
+        }
+      ]
+    },
+    {
+      "kind": "category",
+      "name": "Variables",
+      "custom": "VARIABLE",
+      "colour": 330
+    }
+  ]
+}
