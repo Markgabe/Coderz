@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import RankColors from '../../utils/RankColors';
 import {
   Container,
   BarContainer,
@@ -18,17 +19,21 @@ export default function SideNavbar() {
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('username');
+    localStorage.removeItem('rank');
+    localStorage.removeItem('xp');
 
     history.push('/login');
   };
 
+  const rank = localStorage.getItem('rank');
+
   return (
     <Container>
       <BarContainer>
-        <Rank />
+        <Rank style={{ borderLeftColor: RankColors[rank] }} />
         <LevelContainer>
           <h1>LEVEL 34</h1>
-          <h4>Ruby IV</h4>
+          <h4>{rank[0].toUpperCase() + rank.slice(1)} IV</h4>
         </LevelContainer>
         <UserInfoContainer>
           <p>{localStorage.getItem('username') || 'MARKGOD'}</p>

@@ -44,6 +44,8 @@ export default function Login() {
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('refreshToken', refreshToken);
             localStorage.setItem('username', user.name);
+            localStorage.setItem('rank', user.rank);
+            localStorage.setItem('xp', user.xp);
             toast.success('Login succeded!');
             history.push('/');
           } else {

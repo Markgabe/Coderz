@@ -18,7 +18,7 @@ export const BarContainer = styled.div`
 export const Rank = styled.div`
   width: 0;
   height: 0;
-  border-left: 80px solid #FF4370;
+  border-left: 80px solid transparent;
   border-bottom: 80px solid transparent;
 `;
 
