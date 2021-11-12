@@ -12,6 +12,8 @@ import {
   FormGroup,
   CustomInput,
   SubmitButton,
+  UserSignupRedirect,
+  RedirectButton,
 } from './styles';
 
 export default function Login() {
@@ -80,6 +82,10 @@ export default function Login() {
             onClick={(e) => handleSubmit(e)}
             value='Login'
           />
+          <UserSignupRedirect>
+            <p>Não possui conta?</p>
+            <RedirectButton to='/register'>Registre-se!</RedirectButton>
+          </UserSignupRedirect>
         </FormGroup>
       </LoginArea>
     </Container>

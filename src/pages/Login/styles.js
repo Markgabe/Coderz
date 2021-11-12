@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -68,4 +69,16 @@ export const SubmitButton = styled.input`
   &:hover {
     transform: scale(1.03);
   }
+`;
+
+export const UserSignupRedirect = styled.div`
+   display: flex;
+   margin-top: 15px;
+   gap: 10px;
+`;
+
+export const RedirectButton = styled(Link)`
+  text-decoration: none;
+  font-family: 'Montserrat', sans-serif;
+  color: #003b6d;
 `;
