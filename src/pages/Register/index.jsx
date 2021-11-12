@@ -39,29 +39,12 @@ export default function Login() {
       })
       .then((response) => {
         if (response.status === 200) {
-          toast.success('Created new user successfully!');
+          toast.success(
+            'Seu usuário foi criado, agora faça seu primeiro login!'
+          );
+          history.push('/login');
         } else {
           toast.error('Falha na criação de novo usuário!');
-        }
-      })
-      .catch((err) => {
-        toast.error(err.message);
-      });
-
-    api
-      .post('login', {
-        email: username,
-        password,
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          const { accessToken, refreshToken, user } = response.data;
-          localStorage.setItem('accessToken', accessToken);
-          localStorage.setItem('refreshToken', refreshToken);
-          localStorage.setItem('username', user.name);
-          history.push('/');
-        } else {
-          toast.error('Falha no login!');
         }
       })
       .catch((err) => {
