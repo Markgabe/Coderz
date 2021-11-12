@@ -37,6 +37,7 @@ export default function BlocklyChallengeArea() {
           onClick={(e) => {
             Blockly.JavaScript.addReservedWords('code');
             const code = Blockly.JavaScript.workspaceToCode(workspace);
+            // eslint-disable-next-line no-console
             console.log(code);
           }}
         >
