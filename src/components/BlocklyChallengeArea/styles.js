@@ -9,20 +9,43 @@ export const Container = styled.div`
   align-self: center;
   justify-self: center;
 
-  background-color: white;
+  @media (max-height: 768px) {
+    height: 80%;
+  }
+`;
+
+export const BlocklyArea = styled.div`
+  display: flex;
+  width: 100%;
+  height: 93%;
+
+  @media (max-height: 768px) {
+    height: 90%;
+  }
 `;
 
 export const BlocklyDiv = styled.div`
-  height: 93%;
-  width: 100%;
-  background: transparent;
+  width: 70%;
+  height: 100%;
+`;
+
+export const OutputArea = styled.div`
+  width: 30%;
+  height: 100%;
+  padding: 10px;
+  color: white;
+  background-color: #333333;
 `;
 
 export const Menu = styled.div`
   display: flex;
-  height: 7%;
   width: 100%;
   background-color: #6699cc;
+  height: 7%;
+
+  @media (max-height: 768px) {
+    height: 10%;
+  }
 `;
 
 export const ChallengeInfo = styled.div`
@@ -58,13 +81,19 @@ export const ChallengeInfo = styled.div`
   }
 `;
 
-export const SubmitButton = styled.button`
+export const ButtonGroup = styled.div`
+  display: flex;
+  margin-left: auto;
+  margin-right: 20px;
+  gap: 10px;
+`;
+
+export const StyledButton = styled.button`
   height: 100%;
   width: 100px;
   align-self: center;
-  margin-left: auto;
-  margin-right: 20px;
 
+  cursor: pointer;
   background-color: #5cbd66;
   border: none;
 

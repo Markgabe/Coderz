@@ -40,6 +40,10 @@ export const IconGroup = styled.div`
   margin-top: 25px;
   margin-bottom: auto;
   gap: 50px;
+
+  @media (max-height: 768px) {
+    gap: 15px;
+  }
 `;
 
 export const ExpandButton = styled.div`
