@@ -35,6 +35,7 @@ export const OutputArea = styled.div`
   padding: 10px;
   color: white;
   background-color: #333333;
+  font-family: 'Anonymous Pro', monospace;
 `;
 
 export const Menu = styled.div`

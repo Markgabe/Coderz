@@ -1,6 +1,8 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
+import { capitalize } from '../../utils/StringUtils';
+
 import RankColors from '../../utils/RankColors';
 import {
   Container,
@@ -33,7 +35,7 @@ export default function SideNavbar() {
         <Rank style={{ borderLeftColor: RankColors[rank] }} />
         <LevelContainer>
           <h1>LEVEL 34</h1>
-          <h4>{rank[0].toUpperCase() + rank.slice(1)} IV</h4>
+          <h4>{capitalize(rank)} IV</h4>
         </LevelContainer>
         <UserInfoContainer>
           <p>{localStorage.getItem('username') || 'MARKGOD'}</p>
