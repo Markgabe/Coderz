@@ -1,6 +1,10 @@
+/* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React, { useEffect, useState, useRef } from 'react';
 import Blockly from 'blockly';
+
+import { capitalize } from '../../utils/StringUtils';
+import { evaluateSubmission } from '../../services/submissionEvaluator';
 
 import Interpreter from './interpreter.js';
 
@@ -14,22 +18,28 @@ import {
   Menu,
   ChallengeInfo,
   ButtonGroup,
-  StyledButton
+  StyledButton,
 } from './styles';
 
-export default function BlocklyChallengeArea() {
+export default function BlocklyChallengeArea({ challenge }) {
   const [outputArea, setOutputArea] = useState();
   const [stepButton, setStepButton] = useState();
   const [latestCode, setLatestCode] = useState('');
   const [workspace, setWorkspace] = useState(null);
   const blocklyDiv = useRef(null);
+  const startBlocks = useRef(null);
 
   let interpreter;
   let hasMoreCode;
   let highlightPause;
 
   useEffect(() => {
-    setWorkspace(Blockly.inject(blocklyDiv.current, { toolbox: jsonToolbox }));
+    setWorkspace(
+      Blockly.inject(blocklyDiv.current, {
+        toolbox: jsonToolbox,
+        theme: { base: Blockly.Themes.Classic },
+      })
+    );
     setOutputArea(document.getElementById('output'));
     setStepButton(document.getElementById('stepButton'));
 
@@ -58,6 +68,10 @@ export default function BlocklyChallengeArea() {
     }
   }, [workspace]);
 
+  useEffect(() => {
+    if (workspace) Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
+  }, [challenge.testCases]);
+
   function highlightBlock(id) {
     workspace.highlightBlock(id);
     highlightPause = true;
@@ -68,7 +82,8 @@ export default function BlocklyChallengeArea() {
     highlightPause = false;
 
     if (clearOutput) {
-      outputArea.innerHTML = 'Saída do programa:<br>=================';
+      outputArea.innerHTML =
+        'Saída do programa:<br>===========================';
     }
   }
   function runCode() {
@@ -114,8 +129,8 @@ export default function BlocklyChallengeArea() {
           return;
         }
       }
-    // Keep executing until a highlight statement is reached,
-    // or the code completes or errors.
+      // Keep executing until a highlight statement is reached,
+      // or the code completes or errors.
     } while (hasMoreCode && !highlightPause);
   }
 
@@ -143,27 +158,54 @@ export default function BlocklyChallengeArea() {
 
   return (
     <Container>
+      <xml
+        xmlns='https://developers.google.com/blockly/xml'
+        ref={startBlocks}
+        id='startBlocks'
+        style={{ display: 'none' }}
+      >
+        <block editable='false' type='procedures_defreturn'>
+          <field name='NAME'>resultado</field>
+          <mutation>
+            {challenge.testCases &&
+              challenge.testCases.length > 0 &&
+              Object.keys(challenge.testCases[0].input).map((input) => (
+                <arg name={input} key={input} />
+              ))}
+          </mutation>
+          <comment pinned='false'>
+            Descreva sua lógica aqui, lembre-se de utilizar os parâmetros de
+            entrada
+          </comment>
+        </block>
+      </xml>
       <BlocklyArea>
         <BlocklyDiv id='blocklyDiv' ref={blocklyDiv} />
-        <OutputArea
-          id="output"
-          readonly
-        />
+        <OutputArea id='output' readonly />
       </BlocklyArea>
       <xml id='toolbox' style={{ display: 'none' }} />
       <Menu>
         <ChallengeInfo>
           <div>
-            <p>Soma de gastos</p>
-            <h6>Gerais - Nível 2</h6>
+            <p>{capitalize(challenge.name)}</p>
+            <h6>
+              {capitalize(challenge.category)} - Nível {challenge.level}
+            </h6>
           </div>
-          <h4>+230XP</h4>
+          <h4>+{challenge.gainedXP}XP</h4>
         </ChallengeInfo>
         <ButtonGroup>
           <StyledButton
-            id="stepButton"
-            onClick={() => stepCode()}
+            onClick={(e) => {
+              Blockly.JavaScript.STATEMENT_PREFIX = '';
+              outputArea.innerHTML = Blockly.JavaScript.workspaceToCode(
+                workspace
+              ).replace('\n', '<br>');
+            }}
           >
+            <p>Mostrar código</p>
+          </StyledButton>
+          <StyledButton id='stepButton' onClick={() => stepCode()}>
             <p>Rodar passo</p>
           </StyledButton>
           <StyledButton
@@ -174,8 +216,14 @@ export default function BlocklyChallengeArea() {
             <p>Executar</p>
           </StyledButton>
           <StyledButton
-            onClick={(e) => {
-              outputArea.innerHTML = latestCode;
+            onClick={() => {
+              Blockly.JavaScript.STATEMENT_PREFIX = '';
+              const functionPassed = evaluateSubmission(
+                Blockly.JavaScript.workspaceToCode(workspace),
+                challenge.testCases
+              );
+
+              alert(functionPassed);
             }}
           >
             <p>Enviar</p>
