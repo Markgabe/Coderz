@@ -5,10 +5,7 @@ import SideNavbar from '../../components/SideNavbar';
 import Topbar from '../../components/Topbar';
 import Card from '../../components/Card';
 
-import useAuth from '../../hooks/useAuth';
-
 export default function Home() {
-  useAuth();
   return (
     <Container>
       <SideNavbar active='home' />

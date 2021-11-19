@@ -7,23 +7,19 @@ import BlocklyChallengeArea from '../../components/BlocklyChallengeArea';
 
 import api from '../../services/api';
 
-import useAuth from '../../hooks/useAuth';
-
 export default function Challenge(props) {
-  useAuth();
-
   const [challenge, setChallenge] = useState({});
 
   useEffect(async () => {
-    await api
-      .get(`/challenge/${props.match.params.id}/testCases`)
-      .then((result) => {
-        setChallenge(result.data);
-      })
-      .catch((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result);
-      });
+    try {
+      const { data } = await api.get(
+        `/challenge/${props.match.params.id}/testCases`
+      );
+      setChallenge(data);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.log(err);
+    }
   }, []);
   return (
     <Container>

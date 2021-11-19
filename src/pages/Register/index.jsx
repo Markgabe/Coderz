@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-
 import { toast } from 'react-toastify';
 
+import history from '../../history';
 import api from '../../services/api';
 
 import {
@@ -17,8 +16,6 @@ import {
 } from './styles';
 
 export default function Login() {
-  const history = useHistory();
-
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');

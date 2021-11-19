@@ -1,5 +1,6 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
+
+import { Context } from '../../contexts/AuthContext';
 
 import { capitalize } from '../../utils/StringUtils';
 
@@ -15,19 +16,9 @@ import {
 } from './styles';
 
 export default function SideNavbar() {
-  const history = useHistory();
+  const { handleLogout } = useContext(Context);
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    localStorage.removeItem('username');
-    localStorage.removeItem('rank');
-    localStorage.removeItem('xp');
-
-    history.push('/login');
-  };
-
-  const rank = localStorage.getItem('rank');
+  const { name, rank } = JSON.parse(localStorage.getItem('userData'));
 
   return (
     <Container>
@@ -38,7 +29,7 @@ export default function SideNavbar() {
           <h4>{capitalize(rank)} IV</h4>
         </LevelContainer>
         <UserInfoContainer>
-          <p>{localStorage.getItem('username') || 'MARKGOD'}</p>
+          <p>{name}</p>
           <LogoutButton onClick={() => handleLogout()}>
             <LogoutIcon />
           </LogoutButton>
