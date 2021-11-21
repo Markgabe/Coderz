@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React, { useEffect, useState, useRef } from 'react';
 import Blockly from 'blockly';
