@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
+import jwt from 'jsonwebtoken';
+
 import history from '../history';
 import api from '../services/api';
 
@@ -8,10 +10,12 @@ export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const accessToken = localStorage.getItem('accessToken');
+  useEffect(async () => {
+    let accessToken = localStorage.getItem('accessToken');
 
     if (accessToken) {
+      if (tokenExpired(accessToken)) accessToken = await refreshToken();
+
       api.defaults.headers.Authorization = `Bearer ${accessToken}`;
       setAuthenticated(true);
     }
@@ -58,6 +62,25 @@ export default function useAuth() {
     api.defaults.headers.Authorization = undefined;
     toast.info('You are logged out!');
     history.push('/login');
+  }
+
+  function tokenExpired(token) {
+    return jwt.decode(token).exp * 1000 < Date.now();
+  }
+
+  async function refreshToken() {
+    const refreshToken = localStorage.getItem('refreshToken');
+    if (refreshToken) {
+      const { status, data: { accessToken } } = await api.post('/token', { refreshToken });
+      if (status !== 200) {
+        toast.error('Falha na comunicação com o servidor');
+        handleLogout();
+        return null;
+      }
+      localStorage.setItem('accessToken', accessToken);
+      return accessToken;
+    }
+    return null;
   }
 
   return { authenticated, loading, handleLogin, handleLogout };

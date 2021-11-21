@@ -1,4 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+
+import history from '../../history';
 
 import { Context } from '../../contexts/AuthContext';
 
@@ -14,7 +16,11 @@ import {
 } from './styles';
 
 export default function Login() {
-  const { handleLogin } = useContext(Context);
+  const { handleLogin, authenticated } = useContext(Context);
+
+  useEffect(() => {
+    if (authenticated) history.push('/');
+  }, []);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
