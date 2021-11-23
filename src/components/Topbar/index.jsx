@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { Context } from '../../contexts/AuthContext';
 
 import { capitalize } from '../../utils/StringUtils';
+import { getLevel } from '../../utils/LevelByXP';
 
 import RankColors from '../../utils/RankColors';
 import {
@@ -15,17 +16,17 @@ import {
   LogoutButton,
 } from './styles';
 
-export default function SideNavbar() {
+export default function Topbar() {
   const { handleLogout } = useContext(Context);
 
-  const { name, rank } = JSON.parse(localStorage.getItem('userData'));
+  const { name, rank, xp } = JSON.parse(localStorage.getItem('userData'));
 
   return (
     <Container>
       <BarContainer>
         <Rank style={{ borderLeftColor: RankColors[rank] }} />
         <LevelContainer>
-          <h1>LEVEL 34</h1>
+          <h1>LEVEL {getLevel(xp)}</h1>
           <h4>{capitalize(rank)} IV</h4>
         </LevelContainer>
         <UserInfoContainer>
