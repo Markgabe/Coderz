@@ -2,6 +2,9 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Blockly from 'blockly';
 
+import history from '../../history';
+import api from '../../services/api';
+
 import { capitalize } from '../../utils/StringUtils';
 import { evaluateSubmission } from '../../services/submissionEvaluator';
 
@@ -24,6 +27,7 @@ export default function BlocklyChallengeArea({ challenge }) {
   const [outputArea, setOutputArea] = useState();
   const [stepButton, setStepButton] = useState();
   const [latestCode, setLatestCode] = useState('');
+  const [startedAt, setStartedAt] = useState(null);
   const [workspace, setWorkspace] = useState(null);
   const blocklyDiv = useRef(null);
   const startBlocks = useRef(null);
@@ -43,7 +47,6 @@ export default function BlocklyChallengeArea({ challenge }) {
     setStepButton(document.getElementById('stepButton'));
 
     highlightPause = false;
-
     interpreter = null;
   }, []);
 
@@ -64,6 +67,8 @@ export default function BlocklyChallengeArea({ challenge }) {
           generateCodeAndLoadIntoInterpreter();
         }
       });
+
+      setStartedAt(new Date(Date.now()));
     }
   }, [workspace]);
 
@@ -222,7 +227,17 @@ export default function BlocklyChallengeArea({ challenge }) {
                 challenge.testCases
               );
 
-              alert(functionPassed);
+              Blockly.mainWorkspace.clear();
+
+              api.post(`/challenge/${challenge.id}/submit`, {
+                successful: functionPassed,
+                startedAt,
+                finishedAt: new Date(Date.now()),
+              });
+
+              if (functionPassed) {
+                history.push('/challenge');
+              }
             }}
           >
             <p>Enviar</p>
