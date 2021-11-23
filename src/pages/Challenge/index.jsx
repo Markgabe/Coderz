@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Container, MainArea } from './styles';
-import SideNavbar from '../../components/SideNavbar';
-import Topbar from '../../components/Topbar';
+import BaseScreen from '../../components/BaseScreen';
 import BlocklyChallengeArea from '../../components/BlocklyChallengeArea';
 
 import api from '../../services/api';
@@ -22,12 +20,8 @@ export default function Challenge(props) {
     }
   }, []);
   return (
-    <Container>
-      <SideNavbar active='challenge' />
-      <MainArea>
-        <Topbar />
-        <BlocklyChallengeArea challenge={challenge} />
-      </MainArea>
-    </Container>
+    <BaseScreen activePage='challenge'>
+      <BlocklyChallengeArea challenge={challenge} />
+    </BaseScreen>
   );
 }
