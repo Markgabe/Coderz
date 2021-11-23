@@ -54,11 +54,12 @@ export default function useAuth() {
     toast.dismiss(id, 4000);
   }
 
-  function handleLogout() {
+  async function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem('accessToken');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('userData');
+    await api.delete('/logout');
     api.defaults.headers.Authorization = undefined;
     toast.info('You are logged out!');
     history.push('/login');
@@ -71,16 +72,18 @@ export default function useAuth() {
   async function refreshToken() {
     const refreshToken = localStorage.getItem('refreshToken');
     if (refreshToken) {
-      const { status, data: { accessToken } } = await api.post('/token', { refreshToken });
-      if (status !== 200) {
+      try {
+        const { status, data: { accessToken } } = await api.post('/token', { refreshToken });
+        localStorage.setItem('accessToken', accessToken);
+        return accessToken;
+      } catch (err) {
         toast.error('Falha na comunicação com o servidor');
         handleLogout();
         return null;
       }
-      localStorage.setItem('accessToken', accessToken);
-      return accessToken;
+    } else {
+      return null;
     }
-    return null;
   }
 
   return { authenticated, loading, handleLogin, handleLogout };
