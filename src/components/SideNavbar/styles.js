@@ -14,8 +14,7 @@ export const Logo = styled.div`
   height: 60px;
   background-color: #6699CC;
   display: flex;
-  align-self: center;
-  margin: 15px 0;
+  margin: 15px auto;
   border-radius: 50%;
   justify-content: center;
   align-items: center;
@@ -29,7 +28,7 @@ export const Logo = styled.div`
 `;
 
 export const Separator = styled.div`
-  width: 75px;
+  width: 75%;
   border: 1px solid #BDBDBD;
   align-self: center;
 `;
