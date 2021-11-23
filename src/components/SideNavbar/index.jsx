@@ -19,17 +19,13 @@ export default function SideNavbar({ active }) {
       <Separator />
       <IconGroup>
         <Icon to='/' active={active === Pages.HOME} svg={Home} />
-        <Icon
-          to='/challenge/1'
-          active={active === Pages.CHALLENGE}
-          svg={Sword}
-        />
-        <Icon active={active === Pages.RANK} svg={Trophy} />
-        <Icon active={active === Pages.CONFIG} svg={Gear} />
-        <Icon active={active === Pages.USER} svg={User} />
+        <Icon to='/challenge' active={active === Pages.CHALLENGE} svg={Sword} />
+        <Icon to='#' active={active === Pages.RANK} svg={Trophy} />
+        <Icon to='#' active={active === Pages.CONFIG} svg={Gear} />
+        <Icon to='#' active={active === Pages.USER} svg={User} />
       </IconGroup>
       <ExpandButton>
-        <Icon svg={ChevronDoubleRight} />
+        <Icon svg={ChevronDoubleRight} to='#' />
       </ExpandButton>
     </Container>
   );
