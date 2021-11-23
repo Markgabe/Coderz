@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+import { fadeIn } from 'react-animations';
+
+const fadeAnimation = keyframes`${fadeIn}`;
 
 export const Container = styled.div`
   display: flex;
@@ -16,4 +20,6 @@ export const Container = styled.div`
 
   background-color: white;
   box-shadow: 2px 2px 8px 2px rgba(0, 0, 0, 0.25);
+
+  animation: ${fadeAnimation} 0.5s;
 `;

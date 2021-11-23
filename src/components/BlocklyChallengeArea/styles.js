@@ -1,13 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+import { fadeIn } from 'react-animations';
+
+const fadeAnimation = keyframes`${fadeIn}`;
 
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  width: 95%;
-  height: 85%;
+  width: 100%;
+  height: 100%;
   align-self: center;
   justify-self: center;
+
+  animation: ${fadeAnimation} 0.5s;
 
   @media (max-height: 768px) {
     height: 80%;

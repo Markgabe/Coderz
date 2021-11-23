@@ -1,9 +1,15 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { LogoutBoxR } from '@styled-icons/remix-line';
+
+import { merge, slideInDown, fadeInDown } from 'react-animations';
+
+const fadeAnimation = keyframes`${merge(slideInDown, fadeInDown)}`;
 
 export const Container = styled.div`
   display: flex;
   width: 100%;
+
+  animation: 0.3s ${fadeAnimation};
 `;
 
 export const BarContainer = styled.div`
