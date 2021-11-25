@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+import { fadeIn } from 'react-animations';
+
+const fadeAnimation = keyframes`${fadeIn}`;
 
 export const Container = styled.div`
   display: flex;
@@ -25,6 +29,8 @@ export const SlotArea = styled.div`
   align-items: center;
   flex-wrap: wrap;
   overflow-y: auto;
+
+  animation: ${fadeAnimation} 0.5s;
 
   @media (max-width: 1366px) {
     gap: 60px;
