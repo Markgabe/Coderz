@@ -1,6 +1,6 @@
 /* eslint-disable no-new-func */
 export function evaluateSubmission(code, testCases) {
-  if (code === '') return false;
+  if (!code || code === '' || !code.includes('return')) return false;
 
   const functionDefinition = extractFunctionFromCode(code);
   const userFunction = new Function(wrapFunctionBody(functionDefinition));
