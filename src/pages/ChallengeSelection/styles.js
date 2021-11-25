@@ -34,6 +34,10 @@ export const ChallengeCard = styled.div`
   animation: ${fadeAnimation} 0.5s;
   transition: all 0.2s;
 
+  @media(max-width: 1366px) {
+    height: 50%;
+  }
+
   h2 {
     color: #003b6d;
   }
@@ -41,6 +45,7 @@ export const ChallengeCard = styled.div`
   p {
     color: #676767;
     margin: 10px 0;
+    overflow-wrap: break-word;
   }
   
   div {
