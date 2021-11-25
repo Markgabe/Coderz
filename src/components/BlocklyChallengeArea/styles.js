@@ -35,13 +35,15 @@ export const BlocklyDiv = styled.div`
   height: 100%;
 `;
 
-export const OutputArea = styled.div`
+export const OutputArea = styled.textarea`
+  cursor: text;
   width: 30%;
   height: 100%;
   padding: 10px;
   color: white;
   background-color: #333333;
   font-family: 'Anonymous Pro', monospace;
+  resize: none;
 `;
 
 export const Menu = styled.div`

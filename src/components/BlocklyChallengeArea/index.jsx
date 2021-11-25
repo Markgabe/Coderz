@@ -1,6 +1,7 @@
 /* eslint-disable no-alert */
 import React, { useEffect, useState, useRef } from 'react';
 import Blockly from 'blockly';
+import { toast } from 'react-toastify';
 
 import history from '../../history';
 import api from '../../services/api';
@@ -86,15 +87,14 @@ export default function BlocklyChallengeArea({ challenge }) {
     highlightPause = false;
 
     if (clearOutput) {
-      outputArea.innerHTML =
-        'Saída do programa:<br>===========================';
+      outputArea.innerHTML = 'Saída do programa:\n===========================';
     }
   }
   function runCode() {
     resetStepUi(true);
     interpreter = new Interpreter(latestCode, initApi);
     interpreter.run();
-    outputArea.innerHTML += '<br><br><< Fim da execução >>';
+    outputArea.innerHTML += '\n\n<< Fim da execução >>';
     interpreter = null;
     resetStepUi(false);
   }
@@ -120,7 +120,7 @@ export default function BlocklyChallengeArea({ challenge }) {
         hasMoreCode = interpreter.step();
       } finally {
         if (!hasMoreCode) {
-          outputArea.innerHTML += '<br><br><< Fim da execução >>';
+          outputArea.innerHTML += '\n\n<< Fim da execução >>';
           interpreter = null;
           resetStepUi(false);
 
@@ -143,7 +143,7 @@ export default function BlocklyChallengeArea({ challenge }) {
       globalObject,
       'alert',
       interpreter.createNativeFunction((text) => {
-        outputArea.innerHTML += `<br>${arguments.length ? text : ''}`;
+        outputArea.innerHTML += `\n${arguments.length ? text : ''}`;
       })
     );
 
@@ -185,7 +185,7 @@ export default function BlocklyChallengeArea({ challenge }) {
       </xml>
       <BlocklyArea>
         <BlocklyDiv id='blocklyDiv' ref={blocklyDiv} />
-        <OutputArea id='output' readonly />
+        <OutputArea id='output' disabled />
       </BlocklyArea>
       <xml id='toolbox' style={{ display: 'none' }} />
       <Menu>
@@ -204,7 +204,7 @@ export default function BlocklyChallengeArea({ challenge }) {
               Blockly.JavaScript.STATEMENT_PREFIX = '';
               outputArea.innerHTML = Blockly.JavaScript.workspaceToCode(
                 workspace
-              ).replace('\n', '<br>');
+              ).replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '');
             }}
           >
             <p>Mostrar código</p>
@@ -228,6 +228,7 @@ export default function BlocklyChallengeArea({ challenge }) {
               );
 
               Blockly.mainWorkspace.clear();
+              Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
 
               api.post(`/challenge/${challenge.id}/submit`, {
                 successful: functionPassed,
@@ -236,7 +237,10 @@ export default function BlocklyChallengeArea({ challenge }) {
               });
 
               if (functionPassed) {
+                toast.success('Parabéns! Você conseguiu passar no desafio!');
                 history.push('/challenge');
+              } else {
+                toast.error('Não foi dessa vez, mas continue tentando!');
               }
             }}
           >
