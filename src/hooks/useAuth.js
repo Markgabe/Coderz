@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-
 import jwt from 'jsonwebtoken';
 
 import history from '../history';
 import api from '../services/api';
+import useUserInfo from './useUserInfo';
 
 export default function useAuth() {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
+
+  const { updateUserInfo } = useUserInfo();
 
   useEffect(async () => {
     let accessToken = localStorage.getItem('accessToken');
@@ -38,7 +40,7 @@ export default function useAuth() {
         const { accessToken, refreshToken, user } = data;
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
-        localStorage.setItem('userData', JSON.stringify(user));
+        updateUserInfo(user);
 
         toast.success('Login succeded!');
         api.defaults.headers.Authorization = `Bearer ${accessToken}`;

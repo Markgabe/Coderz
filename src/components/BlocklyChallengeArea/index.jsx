@@ -3,11 +3,14 @@ import React, { useEffect, useState, useRef } from 'react';
 import Blockly from 'blockly';
 import { toast } from 'react-toastify';
 
+import useUserInfo from '../../hooks/useUserInfo';
+
 import history from '../../history';
+
 import api from '../../services/api';
+import { evaluateSubmission } from '../../services/submissionEvaluator';
 
 import { capitalize } from '../../utils/StringUtils';
-import { evaluateSubmission } from '../../services/submissionEvaluator';
 
 import Interpreter from './interpreter.js';
 
@@ -32,6 +35,8 @@ export default function BlocklyChallengeArea({ challenge }) {
   const [workspace, setWorkspace] = useState(null);
   const blocklyDiv = useRef(null);
   const startBlocks = useRef(null);
+
+  const { xp: userCurrentXp, updateUserProperty } = useUserInfo();
 
   let interpreter;
   let hasMoreCode;
@@ -160,6 +165,32 @@ export default function BlocklyChallengeArea({ challenge }) {
     );
   }
 
+  async function handleSubmit() {
+    Blockly.JavaScript.STATEMENT_PREFIX = '';
+    const functionPassed = evaluateSubmission(
+      Blockly.JavaScript.workspaceToCode(workspace),
+      challenge.testCases
+    );
+
+    Blockly.mainWorkspace.clear();
+    Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
+
+    const { data } = await api.post(`/challenge/${challenge.id}/submit`, {
+      successful: functionPassed,
+      startedAt,
+      finishedAt: new Date(Date.now()),
+    });
+
+    updateUserProperty('xp', userCurrentXp + data.xpGained);
+
+    if (functionPassed) {
+      toast.success('Parabéns! Você conseguiu passar no desafio!');
+      history.push('/challenge');
+    } else {
+      toast.error('Não foi dessa vez, mas continue tentando!');
+    }
+  }
+
   return (
     <Container>
       <xml
@@ -219,31 +250,7 @@ export default function BlocklyChallengeArea({ challenge }) {
           >
             <p>Executar</p>
           </StyledButton>
-          <StyledButton
-            onClick={() => {
-              Blockly.JavaScript.STATEMENT_PREFIX = '';
-              const functionPassed = evaluateSubmission(
-                Blockly.JavaScript.workspaceToCode(workspace),
-                challenge.testCases
-              );
-
-              Blockly.mainWorkspace.clear();
-              Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
-
-              api.post(`/challenge/${challenge.id}/submit`, {
-                successful: functionPassed,
-                startedAt,
-                finishedAt: new Date(Date.now()),
-              });
-
-              if (functionPassed) {
-                toast.success('Parabéns! Você conseguiu passar no desafio!');
-                history.push('/challenge');
-              } else {
-                toast.error('Não foi dessa vez, mas continue tentando!');
-              }
-            }}
-          >
+          <StyledButton onClick={() => handleSubmit()}>
             <p>Enviar</p>
           </StyledButton>
         </ButtonGroup>

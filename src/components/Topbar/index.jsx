@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 
+import useUserInfo from '../../hooks/useUserInfo';
+
 import { Context } from '../../contexts/AuthContext';
 
 import { capitalize } from '../../utils/StringUtils';
@@ -18,8 +20,7 @@ import {
 
 export default function Topbar() {
   const { handleLogout } = useContext(Context);
-
-  const { name, rank, xp } = JSON.parse(localStorage.getItem('userData'));
+  const { name, rank, xp } = useUserInfo();
 
   return (
     <Container>
