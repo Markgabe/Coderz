@@ -1,10 +1,14 @@
 /* eslint-disable function-paren-newline */
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ReactTooltip from 'react-tooltip';
 
 import {
   Container,
   ChallengeArea,
+  ChallengeCompleted,
+  ChallengeTitle,
+  ChallengeGainedXP,
   ChallengeCard,
   CategoryGroup,
   CategoryCard,
@@ -24,6 +28,8 @@ export default function Challenge() {
   const [challengeMap, setChallengeMap] = useState([]);
   const [selected, setSelected] = useState('math');
 
+  const COMPLETED_CHALLENGE_RATIO = 0.2;
+
   useEffect(async () => {
     try {
       const { data } = await api.get('/challenges');
@@ -36,11 +42,27 @@ export default function Challenge() {
 
   const renderChallenge = (challenge) => (
     <ChallengeCard key={challenge.id}>
-      <h2>{challenge.name}</h2>
+      <ChallengeTitle>
+        <h2>{challenge.name}</h2>
+        {challenge.successfulSubmissions > 0 && (
+          <ChallengeCompleted data-tip='Desafio completo!' />
+        )}
+      </ChallengeTitle>
       <p>{challenge.description}</p>
       <div>
-        <h4>+{challenge.gainedXP}XP</h4>
-        <Link to={`/challenge/${challenge.id}`}>Quero tentar!</Link>
+        <ChallengeGainedXP completed={challenge.successfulSubmissions > 0}>
+          <h4>+{challenge.gainedXP}XP</h4>
+          {challenge.successfulSubmissions > 0 && (
+            <h4>
+              +{parseInt(challenge.gainedXP * COMPLETED_CHALLENGE_RATIO, 10)}XP
+            </h4>
+          )}
+        </ChallengeGainedXP>
+        <Link to={`/challenge/${challenge.id}`}>
+          {challenge.successfulSubmissions > 0
+            ? 'Fazer novamente!'
+            : 'Quero tentar!'}
+        </Link>
       </div>
     </ChallengeCard>
   );
@@ -60,6 +82,7 @@ export default function Challenge() {
   return (
     <BaseScreen activePage='challenge'>
       <Container>
+        <ReactTooltip />
         <CategoryGroup>
           {Categories.map((category) => renderCategory(category))}
         </CategoryGroup>

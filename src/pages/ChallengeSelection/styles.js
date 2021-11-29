@@ -2,6 +2,8 @@ import styled, { keyframes } from 'styled-components';
 
 import { fadeIn } from 'react-animations';
 
+import { CheckCircleFill } from '@styled-icons/bootstrap';
+
 const fadeAnimation = keyframes`${fadeIn}`;
 
 export const Container = styled.div`
@@ -17,6 +19,32 @@ export const ChallengeArea = styled.div`
   gap: 20px;
   overflow-y: auto;
   justify-content: center;
+`;
+
+export const ChallengeCompleted = styled(CheckCircleFill)`
+  width: 20px;
+  margin: 0 10px 0 auto;
+  color: #3e8924;
+`;
+
+export const ChallengeTitle = styled.div`
+  display: flex;
+  margin-top: 0 !important;
+`;
+
+export const ChallengeGainedXP = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  h4 {
+    color: #3e8924;
+    margin: auto auto 0 0;
+
+    &:nth-child(1) {
+      color: ${(props) => (props.completed ? 'grey' : '#3e8924')};
+      text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
+    }
+  }
 `;
 
 export const ChallengeCard = styled.div`
@@ -51,11 +79,6 @@ export const ChallengeCard = styled.div`
   div {
     display: flex;
     margin-top: auto;
-
-    h4 {
-      color: #3e8924;
-      margin: auto auto 0 0;
-    }
     
     a {
       background: #6699cc;
