@@ -24,7 +24,7 @@ import api from '../../services/api';
 import Categories from '../../utils/Categories';
 import { groupBy } from '../../utils/ArrayUtils';
 
-export default function Challenge() {
+export default function ChallengeSelection() {
   const [challengeMap, setChallengeMap] = useState([]);
   const [selected, setSelected] = useState('math');
 
