@@ -9,27 +9,37 @@ const categories = [
     label: 'Matemática',
     color: '#EB4444',
     index: 1,
-    icon: Calculate
+    icon: Calculate,
+    image: 'pexels-jeshootscom-714699.jpg'
   },
   {
     name: 'text',
     label: 'Textos',
     color: '#6783CC',
     index: 2,
-    icon: Text
+    icon: Text,
+    image: 'pexels-pixabay-261763.jpg'
   },
   {
     name: 'list',
     label: 'Listas',
     color: '#57DD85',
     index: 3,
-    icon: ListUl
+    icon: ListUl,
+    image: 'pexels-suzy-hazelwood-1226398.jpg'
   },
 ];
 
 export function getByIndex(index) {
   for (let i = 0; i < categories.length; i++) {
     if (categories[i].index === index) return categories[i];
+  }
+  return null;
+}
+
+export function getByName(name) {
+  for (let i = 0; i < categories.length; i++) {
+    if (categories[i].name === name) return categories[i];
   }
   return null;
 }
