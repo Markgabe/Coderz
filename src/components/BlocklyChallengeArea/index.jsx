@@ -167,10 +167,17 @@ export default function BlocklyChallengeArea({ challenge }) {
 
   async function handleSubmit() {
     Blockly.JavaScript.STATEMENT_PREFIX = '';
-    const functionPassed = evaluateSubmission(
-      Blockly.JavaScript.workspaceToCode(workspace),
-      challenge.testCases
-    );
+    let functionPassed;
+    if (challenge.regex) {
+      functionPassed =
+        Blockly.JavaScript.workspaceToCode(workspace).match(challenge.regex) !==
+        null;
+    } else {
+      functionPassed = evaluateSubmission(
+        Blockly.JavaScript.workspaceToCode(workspace),
+        challenge.testCases
+      );
+    }
 
     Blockly.mainWorkspace.clear();
     Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
