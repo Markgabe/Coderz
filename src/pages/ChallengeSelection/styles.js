@@ -55,6 +55,15 @@ export const ChallengeGainedXP = styled.div`
       text-decoration: ${(props) => (props.completed ? 'line-through' : 'none')};
     }
   }
+
+  @media (max-width: 1366px) {
+    margin-right: 10px;
+  }
+
+  @media (max-width: 1000px) {
+    font-size: 0.8em;
+    margin-right: 10px;
+  }
 `;
 
 export const ChallengeCard = styled.div`
@@ -78,6 +87,7 @@ export const ChallengeCard = styled.div`
 
   @media (max-width: 1000px) {
     width: 100%;
+    height: 50%;
   }
 
   h2 {
@@ -88,6 +98,7 @@ export const ChallengeCard = styled.div`
     color: #676767;
     margin: 10px 0;
     overflow-wrap: break-word;
+    overflow-y: auto;
   }
   
   div {
@@ -108,6 +119,16 @@ export const ChallengeCard = styled.div`
 
       &:hover {
         filter: brightness(110%);
+      }
+
+      @media (max-width: 1366px) {
+        font-size: 0.8em;
+        height: auto;
+      }
+      
+      @media (max-width: 1000px) {
+        font-size: 0.6em;
+        height: auto;
       }
     }
   }
