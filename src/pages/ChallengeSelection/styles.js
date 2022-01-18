@@ -10,6 +10,10 @@ export const Container = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
 `;
 
 export const ChallengeArea = styled.div`
@@ -19,6 +23,12 @@ export const ChallengeArea = styled.div`
   gap: 20px;
   overflow-y: auto;
   justify-content: center;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    margin-top: 20px;
+    height: 100%;
+  }
 `;
 
 export const ChallengeCompleted = styled(CheckCircleFill)`
@@ -66,6 +76,10 @@ export const ChallengeCard = styled.div`
     height: 50%;
   }
 
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
+
   h2 {
     color: #003b6d;
   }
@@ -110,6 +124,10 @@ export const VerticalSeparator = styled.div`
   background-color: #C4C4C4;
 
   margin-left: 20px;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const CategoryGroup = styled.div`
@@ -118,6 +136,13 @@ export const CategoryGroup = styled.div`
   width: 20%;
   min-width: 210px;
   gap: 20px;
+  
+  @media (max-width: 1000px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+  }
 `;
 
 export const CategoryCard = styled.div`
@@ -133,12 +158,25 @@ export const CategoryCard = styled.div`
   &:hover {
     filter: opacity(100%);
   }
+
+  @media (max-width: 1000px) {
+    width: 30%;
+    height: 50px;
+  }
 `;
 
 export const CategoryLabel = styled.p`
   color: white;
   margin: auto auto auto 10px;
   font-size: 1.6em;
+
+  @media (max-width: 1000px) {
+   font-size: 1em; 
+  }
+
+  @media (max-width: 400px) {
+    font-size: 0.8em; 
+  }
 `;
 
 export const CategoryIcon = styled(({ svg, ...props }) => svg.render(props))`
@@ -146,4 +184,13 @@ export const CategoryIcon = styled(({ svg, ...props }) => svg.render(props))`
   margin: auto 10px auto auto;
   width: 40px;
   height: 40px;
+
+  @media (max-width: 1000px) {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 400px) {
+    display: none;
+  }
 `;
