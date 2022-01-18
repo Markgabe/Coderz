@@ -43,9 +43,19 @@ export default function BlocklyChallengeArea({ challenge }) {
   let highlightPause;
 
   useEffect(() => {
+    const isMobile = window.innerWidth <= 500;
     setWorkspace(
       Blockly.inject(blocklyDiv.current, {
         toolbox: jsonToolbox,
+        zoom: {
+          controls: true,
+          wheel: true,
+          startScale: isMobile ? 0.6 : 1,
+          maxScale: 3,
+          minScale: 0.3,
+          scaleSpeed: 1.2,
+          pinch: true,
+        },
         theme: { base: Blockly.Themes.Classic },
       })
     );

@@ -28,11 +28,19 @@ export const BlocklyArea = styled.div`
   @media (max-height: 768px) {
     height: 90%;
   }
+
+  @media (max-width: 1000px) { 
+    flex-direction: column;
+  }
 `;
 
 export const BlocklyDiv = styled.div`
   width: 70%;
   height: 100%;
+  
+  @media (max-width: 1000px) {
+    width: 100%;
+  }
 `;
 
 export const OutputArea = styled.textarea`
@@ -44,6 +52,11 @@ export const OutputArea = styled.textarea`
   background-color: #333333;
   font-family: 'Anonymous Pro', monospace;
   resize: none;
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    height: 30%;
+  }
 `;
 
 export const Menu = styled.div`
@@ -88,6 +101,10 @@ export const ChallengeInfo = styled.div`
       font-size: 1em;
     }
   }
+
+  @media (max-width: 1000px) {
+   display: none; 
+  }
 `;
 
 export const ButtonGroup = styled.div`
@@ -95,6 +112,13 @@ export const ButtonGroup = styled.div`
   margin-left: auto;
   margin-right: 20px;
   gap: 10px;
+  
+  @media (max-width: 1000px) {
+    width: 100%;
+    align-items: space-evenly;
+    gap: 0;
+    margin: 0;
+  }
 `;
 
 export const StyledButton = styled.button`
@@ -109,5 +133,13 @@ export const StyledButton = styled.button`
   p {
     color: white;
     font-weight: bold;
+  }
+
+  @media (max-width: 1000px) {
+    height: 100%;
+
+    p {
+      font-size: 0.8em;
+    }
   }
 `;
