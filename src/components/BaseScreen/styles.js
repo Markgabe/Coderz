@@ -25,6 +25,10 @@ export const MainArea = styled.div`
   margin: auto;
   padding: 0 10px;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    width: 100vw;
+  }
 `;
 
 export const SlotArea = styled.div`

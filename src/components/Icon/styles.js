@@ -23,5 +23,7 @@ export const ResultIcon = styled(({ svg, ...props }) => svg.render(props))`
     padding-bottom: 20px;
     box-sizing: content-box;
     border-bottom: ${(props) => (props.active ? '3px solid #6699cc' : '')};
+    width: 30px;
+    height: 30px;
   }
 `;

@@ -26,6 +26,10 @@ export const Rank = styled.div`
   height: 0;
   border-left: 80px solid transparent;
   border-bottom: 80px solid transparent;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const LevelContainer = styled.div`
@@ -38,6 +42,18 @@ export const LevelContainer = styled.div`
     padding: 0;
     margin: 0;
     color: #003b6d;
+  }
+
+  @media (max-width: 1000px) {
+    h1 {
+      font-size: 1.4em;
+    }
+    
+    h4 {
+      font-size: 1em;
+    }
+
+    margin-left: 10px;
   }
 `;
 

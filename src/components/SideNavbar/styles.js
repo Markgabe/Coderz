@@ -67,6 +67,9 @@ export const IconGroup = styled.div`
   @media (max-width: 1000px) {
     flex-direction: row;
     margin: auto;
+    width: 80%;
+    gap: 15px;
+    justify-content: space-evenly;
   }
 `;
 
