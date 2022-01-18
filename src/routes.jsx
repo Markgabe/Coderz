@@ -7,7 +7,7 @@ import history from './history';
 
 import { Context } from './contexts/AuthContext';
 
-import Home from './pages/Home';
+import HomePage from './pages/HomePage';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Challenge from './pages/Challenge';
@@ -36,7 +36,7 @@ function CustomRoute({ isPrivate, ...rest }) {
 export default function Routes() {
   return (
     <Router history={history}>
-      <CustomRoute isPrivate exact path='/' component={Home} />
+      <CustomRoute isPrivate exact path='/' component={HomePage} />
       <CustomRoute path='/login' component={Login} />
       <CustomRoute path='/register' component={Register} />
       <CustomRoute

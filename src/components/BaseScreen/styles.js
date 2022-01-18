@@ -9,6 +9,12 @@ export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background-color: #ebedf3;
+
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 export const MainArea = styled.div`

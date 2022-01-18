@@ -7,6 +7,13 @@ export const Container = styled.div`
   width: 85px;
   height: 100vh;
   background-color: white;
+
+  @media (max-width: 1000px) {
+    flex-direction: row;
+    width: 100vw;
+    height: 85px;
+    padding: 10px 0;
+  }
 `;
 
 export const Logo = styled.div`
@@ -25,12 +32,25 @@ export const Logo = styled.div`
   box-shadow: inset 0 0 20px 0 rgba(0,0,0,0.4);
   cursor: default;
   user-select: none;
+
+  @media (max-width: 1000px) {
+    margin: auto 30px auto 15px;
+  }
+  
+  @media (max-width: 800px) {
+    display: none;
+  }
+
 `;
 
 export const Separator = styled.div`
   width: 75%;
   border: 1px solid #BDBDBD;
   align-self: center;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const IconGroup = styled.div`
@@ -43,9 +63,18 @@ export const IconGroup = styled.div`
   @media (max-height: 768px) {
     gap: 15px;
   }
+
+  @media (max-width: 1000px) {
+    flex-direction: row;
+    margin: auto;
+  }
 `;
 
 export const ExpandButton = styled.div`
   margin-bottom: 10px;
   align-self: center;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;

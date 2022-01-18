@@ -17,4 +17,11 @@ export const ResultIcon = styled(({ svg, ...props }) => svg.render(props))`
     color: #6699cc;
     transform: scale(1.05);
   }
+
+  @media (max-width: 1000px) {
+    border-left: none;
+    padding-bottom: 20px;
+    box-sizing: content-box;
+    border-bottom: ${(props) => (props.active ? '3px solid #6699cc' : '')};
+  }
 `;
