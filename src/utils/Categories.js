@@ -2,8 +2,17 @@
 import { Calculate } from '@styled-icons/material-outlined';
 import { Text } from '@styled-icons/ionicons-solid';
 import { ListUl } from '@styled-icons/bootstrap';
+import { Book } from '@styled-icons/boxicons-regular';
 
 const categories = [
+  {
+    name: 'initials',
+    label: 'Aprenda',
+    color: '#457FF0',
+    index: 0,
+    icon: Book,
+    image: 'pexels-suzy-hazelwood-1226398.jpg'
+  },
   {
     name: 'math',
     label: 'Matemática',

@@ -26,7 +26,7 @@ import { groupBy } from '../../utils/ArrayUtils';
 
 export default function ChallengeSelection() {
   const [challengeMap, setChallengeMap] = useState([]);
-  const [selected, setSelected] = useState('math');
+  const [selected, setSelected] = useState('initials');
 
   const COMPLETED_CHALLENGE_RATIO = 0.2;
 
