@@ -20,7 +20,7 @@ export default function SideNavbar({ active }) {
       <IconGroup>
         <Icon to='/' active={active === Pages.HOME} svg={Home} />
         <Icon to='/challenge' active={active === Pages.CHALLENGE} svg={Sword} />
-        <Icon to='#' active={active === Pages.RANK} svg={Trophy} />
+        <Icon to='/rank' active={active === Pages.RANK} svg={Trophy} />
         <Icon to='#' active={active === Pages.CONFIG} svg={Gear} />
         <Icon to='#' active={active === Pages.USER} svg={User} />
       </IconGroup>

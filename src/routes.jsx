@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Challenge from './pages/Challenge';
 import ChallengeSelection from './pages/ChallengeSelection';
+import Rank from './pages/Rank';
 
 function CustomRoute({ isPrivate, ...rest }) {
   const { loading, authenticated } = useContext(Context);
@@ -46,6 +47,7 @@ export default function Routes() {
         component={ChallengeSelection}
       />
       <CustomRoute isPrivate path='/challenge/:id' component={Challenge} />
+      <CustomRoute isPrivate path='/rank' component={Rank} />
     </Router>
   );
 }
