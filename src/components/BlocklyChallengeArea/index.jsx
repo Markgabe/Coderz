@@ -190,7 +190,9 @@ export default function BlocklyChallengeArea({ challenge }) {
     }
 
     Blockly.mainWorkspace.clear();
-    Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
+    if (challenge.testCases) {
+      Blockly.Xml.domToWorkspace(startBlocks.current, workspace);
+    }
 
     const { data } = await api.post(`/challenge/${challenge.id}/submit`, {
       successful: functionPassed,
