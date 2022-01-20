@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Github } from '@styled-icons/boxicons-logos';
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,7 +32,7 @@ export const CategoryCard = styled.div`
 
   margin: 15px 0;
 
-  filter: ${(props) => (props.selected ? 'none' : 'opacity(60%)')};
+  filter: opacity(60%);
 
   &:hover {
     filter: opacity(100%);
@@ -52,6 +54,34 @@ export const CategoryLabel = styled.p`
 export const CategoryIcon = styled(({ svg, ...props }) => svg.render(props))`
   color: white;
   margin: auto 10px auto auto;
+  width: 40px;
+  height: 40px;
+`;
+
+export const GithubRepo = styled.a`
+  display: flex;
+  background-color: #6e5494;
+  border-radius: 40px;
+  width: 250px;
+  text-decoration: none;
+  margin: 10px 0;
+  
+  p {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin: auto;
+  }
+
+  filter: opacity(100%);
+
+  &:hover {
+    filter: opacity(60%);
+  }
+`;
+
+export const GithubIcon = styled(Github)`
+  color: white;
   width: 40px;
   height: 40px;
 `;

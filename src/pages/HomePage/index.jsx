@@ -13,6 +13,8 @@ import {
   CategoryCard,
   CategoryLabel,
   CategoryIcon,
+  GithubRepo,
+  GithubIcon,
 } from './styles';
 
 import BaseScreen from '../../components/BaseScreen';
@@ -72,6 +74,14 @@ export default function HomePage() {
             <CategoryIcon svg={HardwareChip} />
           </CategoryCard>
         </Link>
+        <GithubRepo href='https://github.com/Markgabe/coderz-backend'>
+          <GithubIcon />
+          <p>coderz-backend</p>
+        </GithubRepo>
+        <GithubRepo href='https://github.com/Markgabe/coderz-frontend'>
+          <GithubIcon />
+          <p>coderz-frontend</p>
+        </GithubRepo>
       </Container>
     </BaseScreen>
   );
