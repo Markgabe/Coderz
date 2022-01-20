@@ -39,24 +39,28 @@ export default function HomePage() {
           <br />
           <br />
         </Description>
-        <CategoryCard key='1' color='#457FF0' selected={false}>
-          <div>
-            <CategoryLabel>Sou iniciante</CategoryLabel>
+        <Link to='/video' style={{ textDecoration: 'none' }}>
+          <CategoryCard key='1' color='#457FF0' selected={false}>
             <div>
-              <Description>Nunca mexi com programação</Description>
+              <CategoryLabel>Sou iniciante</CategoryLabel>
+              <div>
+                <Description>Nunca mexi com programação</Description>
+              </div>
             </div>
-          </div>
-          <CategoryIcon svg={Book} />
-        </CategoryCard>
-        <CategoryCard key='2' color='#57DD85' selected={false}>
-          <div>
-            <CategoryLabel>Já sei algo</CategoryLabel>
+            <CategoryIcon svg={Book} />
+          </CategoryCard>
+        </Link>
+        <Link to='/video' style={{ textDecoration: 'none' }}>
+          <CategoryCard key='2' color='#57DD85' selected={false}>
             <div>
-              <Description>Mas me mostra a plataforma!</Description>
+              <CategoryLabel>Já sei algo</CategoryLabel>
+              <div>
+                <Description>Mas me mostra a plataforma!</Description>
+              </div>
             </div>
-          </div>
-          <CategoryIcon svg={ArrowUpRightSquare} />
-        </CategoryCard>
+            <CategoryIcon svg={ArrowUpRightSquare} />
+          </CategoryCard>
+        </Link>
         <Link to='/challenge' style={{ textDecoration: 'none' }}>
           <CategoryCard key='3' color='#EB4343' selected={false}>
             <div>

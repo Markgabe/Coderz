@@ -13,6 +13,7 @@ import Register from './pages/Register';
 import Challenge from './pages/Challenge';
 import ChallengeSelection from './pages/ChallengeSelection';
 import Rank from './pages/Rank';
+import YoutubePage from './pages/YoutubePage';
 
 function CustomRoute({ isPrivate, ...rest }) {
   const { loading, authenticated } = useContext(Context);
@@ -48,6 +49,7 @@ export default function Routes() {
       />
       <CustomRoute isPrivate path='/challenge/:id' component={Challenge} />
       <CustomRoute isPrivate path='/rank' component={Rank} />
+      <CustomRoute isPrivate path='/video' component={YoutubePage} />
     </Router>
   );
 }
